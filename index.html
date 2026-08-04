@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Алексей Шемякин — Python-разработчик</title>
+    <title>Алексей Шемякин — AI Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
@@ -168,6 +168,47 @@
         @keyframes blink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
+        }
+        .hero__summary {
+            max-width: 620px;
+            margin: 0 0 28px;
+            font-size: 0.94rem;
+            font-weight: 300;
+            color: var(--text-sec);
+            line-height: 1.85;
+        }
+        .hero__summary strong {
+            color: var(--accent);
+            font-weight: 500;
+        }
+        .hero__highlights {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin: 0 0 28px;
+        }
+        .hero__highlight {
+            min-height: 76px;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(205,255,80,0.08), rgba(139,140,248,0.05));
+        }
+        .hero__highlight-value {
+            display: block;
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.35rem;
+            line-height: 1;
+            color: var(--accent);
+        }
+        .hero__highlight-label {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.62rem;
+            line-height: 1.45;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
         }
         .hero__contacts {
             display: flex;
@@ -657,14 +698,33 @@
 
         /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
+            .topbar { gap: 16px; }
+            .topbar__status { font-size: 0.58rem; text-align: right; }
             .hero {
                 grid-template-columns: 1fr;
                 text-align: center;
                 gap: 36px;
             }
+            .hero__content {
+                width: 100%;
+                max-width: 100%;
+                min-width: 0;
+            }
             .hero__photo-col { order: -1; }
+            .hero__role {
+                display: block;
+                max-width: 300px;
+                margin-left: auto;
+                margin-right: auto;
+                line-height: 1.6;
+                overflow-wrap: anywhere;
+            }
             .hero__contacts { align-items: center; }
             .hero__greeting { text-align: center; }
+            .hero__summary { max-width: 300px; margin-left: auto; margin-right: auto; overflow-wrap: anywhere; }
+            .hero__highlights { grid-template-columns: 1fr; width: 100%; max-width: 260px; margin-left: auto; margin-right: auto; }
+            .hero__tags { max-width: 300px; margin-left: auto; margin-right: auto; }
+            .tag { font-size: 0.58rem; padding: 5px 10px; }
             .hero__photo-ring { width: 140px; height: 140px; }
             .hero__photo { width: 140px; height: 140px; }
             .langs-grid { grid-template-columns: repeat(2, 1fr); }
@@ -674,7 +734,17 @@
         }
         @media (max-width: 480px) {
             .wrap { padding: 0 18px; }
+            .topbar__status { max-width: 90px; justify-content: flex-end; line-height: 1.35; white-space: normal; }
+            .topbar__status { font-size: 0; }
+            .topbar__status::after {
+                content: 'Открыт';
+                font-size: 0.58rem;
+            }
             .hero { padding: 36px 0 48px; }
+            .hero__name { font-size: clamp(2.7rem, 14vw, 3.4rem); }
+            .hero__role { font-size: 0.7rem; }
+            .hero__summary { font-size: 0.86rem; }
+            .tag { font-size: 0.54rem; padding: 4px 8px; }
             .section { padding: 40px 0; }
             .exp-card { padding: 20px; border-radius: 14px; }
             .langs-grid { gap: 10px; }
@@ -706,7 +776,24 @@
             <h1 class="hero__name hero-anim hero-anim-d3">Шемякин<br><em>Алексей</em></h1>
             <div class="hero__patronymic hero-anim hero-anim-d3">Игоревич</div>
             <div class="hero__role hero-anim hero-anim-d4">
-                &gt; Python-разработчик<span class="caret"></span>
+                &gt; AI Engineer / AI Automation Specialist<span class="caret"></span>
+            </div>
+            <p class="hero__summary hero-anim hero-anim-d5">
+                Создаю <strong>AI-автоматизации, LLM-агентов и data-пайплайны</strong>, которые связывают API, таблицы, CRM и контент-процессы в рабочие системы для бизнеса.
+            </p>
+            <div class="hero__highlights hero-anim hero-anim-d5">
+                <div class="hero__highlight">
+                    <span class="hero__highlight-value">LLM</span>
+                    <span class="hero__highlight-label">агенты и промпт-инжиниринг</span>
+                </div>
+                <div class="hero__highlight">
+                    <span class="hero__highlight-value">API</span>
+                    <span class="hero__highlight-label">интеграции и автоматизация данных</span>
+                </div>
+                <div class="hero__highlight">
+                    <span class="hero__highlight-value">GenAI</span>
+                    <span class="hero__highlight-label">ComfyUI, LoRA, контент-пайплайны</span>
+                </div>
             </div>
             <div class="hero__contacts hero-anim hero-anim-d5">
                 <a href="tel:+37377969418" class="hero__contact">
@@ -729,7 +816,8 @@
             </div>
             <div class="hero__tags">
                 <span class="tag">Тирасполь</span>
-                <span class="tag">МД / РФ</span>
+                <span class="tag">MD / RF / US</span>
+                <span class="tag">AI Agents</span>
                 <span class="tag tag--accent">Remote</span>
             </div>
         </div>
@@ -745,39 +833,40 @@
         <article class="exp-card anim anim-d2">
             <div class="exp-header">
                 <div>
-                    <div class="exp-company">Автоматизация маркетплейса Wildberries</div>
-                    <div class="exp-role">Python-разработчик (автоматизации)</div>
+                    <div class="exp-company">Wildberries / Content Factory</div>
+                    <div class="exp-role">AI Automation Engineer</div>
                     <div class="exp-location">Проектная занятость · Remote</div>
                 </div>
-                <span class="exp-period">май 2026 — июн 2026 · 2 мес</span>
+                <span class="exp-period">май 2026 — авг 2026 · 4 мес</span>
             </div>
 
             <div class="exp-subtitle">Чем занимался</div>
             <ul class="exp-list">
-                <li>Спроектировал и реализовал систему автоматического сбора данных с маркетплейса Wildberries через REST API: продажи, выручка, рекламные расходы, складские остатки по каждому артикулу.</li>
-                <li>Разработал аналитические таблицы в Google Sheets с автоматическим расчётом ключевых метрик: маржинальность, ROI рекламы, динамика остатков.</li>
-                <li>Написал серверную часть на Python/FastAPI и задеплоил на Google Cloud Run для стабильной работы ETL-пайплайнов по расписанию.</li>
-                <li>Обеспечил стабильную обработку данных по 800+ артикулам: реализовал rate limiting, пагинацию и retry-логику для работы в рамках лимитов API.</li>
-                <li>Использовал Google Apps Script (JavaScript) для автоматизации внутренней логики таблиц и триггеров обновления данных.</li>
+                <li>Спроектировал систему автоматизации отчётности для Wildberries: получение данных через Wildberries API, раскладка информации по артикулам в нужные Google Sheets и сбор итоговых таблиц.</li>
+                <li>Настроил формулы, расчёты и структуру сводных листов под бизнес-логику компании, чтобы команда могла видеть нужные показатели без ручной сборки отчётов.</li>
+                <li>Автоматизировал перенос и нормализацию данных между листами, снизив зависимость от ручного копирования и ошибок в таблицах.</li>
+                <li>По запросу Content Factory собрал AI-пайплайн для Instagram-контента: создал виртуальную модель и пакет материалов через ComfyUI, Hugging Face-ресурсы и LoRA.</li>
+                <li>Консультировал по подбору и аренде GPU-сервера на RunPod.io для стабильной генерации и тестирования визуального контента.</li>
             </ul>
 
             <div class="exp-subtitle">Результаты</div>
             <ul class="exp-list exp-list--results">
-                <li>Построил с нуля полную систему аналитики для 800+ SKU, заменив ручной сбор данных.</li>
-                <li>Добился стабильной работы без превышения лимитов API при высоком объёме запросов.</li>
+                <li>Собрал рабочую систему отчётности, которая превращает API-данные маркетплейса в понятные таблицы для управленческих решений.</li>
+                <li>Закрыл отдельный AI-content кейс: от настройки генеративного workflow до готового контент-пакета и инфраструктурных рекомендаций.</li>
             </ul>
 
             <div class="exp-stack">
                 <div class="exp-stack__label">Стек</div>
                 <div class="exp-stack__items">
                     <span class="exp-stack__item">Python</span>
+                    <span class="exp-stack__item">Wildberries API</span>
                     <span class="exp-stack__item">REST API</span>
-                    <span class="exp-stack__item">FastAPI</span>
                     <span class="exp-stack__item">Google Sheets API</span>
                     <span class="exp-stack__item">Google Apps Script</span>
-                    <span class="exp-stack__item">JavaScript</span>
-                    <span class="exp-stack__item">GCP</span>
-                    <span class="exp-stack__item">Google Cloud Run</span>
+                    <span class="exp-stack__item">ComfyUI</span>
+                    <span class="exp-stack__item">Hugging Face</span>
+                    <span class="exp-stack__item">LoRA</span>
+                    <span class="exp-stack__item">RunPod</span>
                 </div>
             </div>
         </article>
@@ -786,7 +875,7 @@
             <div class="exp-header">
                 <div>
                     <div class="exp-company">GOLD Fusion HVAC & Appliance Repair</div>
-                    <div class="exp-role">Python-разработчик (автоматизации)</div>
+                    <div class="exp-role">AI Automation Engineer</div>
                     <div class="exp-location">Нью-Йорк, США</div>
                 </div>
                 <span class="exp-period">авг 2025 — май 2026 · 10 мес</span>
@@ -878,6 +967,9 @@
         <div class="marquee-wrap anim anim-d2">
             <div class="marquee marquee--left">
                 <span class="marquee__item marquee__item--highlight">Python</span>
+                <span class="marquee__item marquee__item--highlight">AI Engineering</span>
+                <span class="marquee__item">LangChain</span>
+                <span class="marquee__item">LangGraph</span>
                 <span class="marquee__item">FastAPI</span>
                 <span class="marquee__item">JavaScript</span>
                 <span class="marquee__item">Node.js</span>
@@ -895,8 +987,12 @@
                 <span class="marquee__item">PyCharm</span>
                 <span class="marquee__item">Google Sheets API</span>
                 <span class="marquee__item">Google Apps Script</span>
+                <span class="marquee__item">Wildberries API</span>
                 <!-- duplicate for seamless loop -->
                 <span class="marquee__item marquee__item--highlight">Python</span>
+                <span class="marquee__item marquee__item--highlight">AI Engineering</span>
+                <span class="marquee__item">LangChain</span>
+                <span class="marquee__item">LangGraph</span>
                 <span class="marquee__item">FastAPI</span>
                 <span class="marquee__item">JavaScript</span>
                 <span class="marquee__item">Node.js</span>
@@ -914,6 +1010,7 @@
                 <span class="marquee__item">PyCharm</span>
                 <span class="marquee__item">Google Sheets API</span>
                 <span class="marquee__item">Google Apps Script</span>
+                <span class="marquee__item">Wildberries API</span>
             </div>
             <div class="marquee marquee--right">
                 <span class="marquee__item marquee__item--highlight">LLM</span>
@@ -921,6 +1018,10 @@
                 <span class="marquee__item">AI Agent Dev</span>
                 <span class="marquee__item">OpenAI API</span>
                 <span class="marquee__item">Anthropic API</span>
+                <span class="marquee__item marquee__item--highlight">ComfyUI</span>
+                <span class="marquee__item">Hugging Face</span>
+                <span class="marquee__item">LoRA</span>
+                <span class="marquee__item">RunPod</span>
                 <span class="marquee__item marquee__item--highlight">n8n</span>
                 <span class="marquee__item">Make.com</span>
                 <span class="marquee__item marquee__item--highlight">Retell.ai</span>
@@ -932,6 +1033,10 @@
                 <span class="marquee__item">AI Agent Dev</span>
                 <span class="marquee__item">OpenAI API</span>
                 <span class="marquee__item">Anthropic API</span>
+                <span class="marquee__item marquee__item--highlight">ComfyUI</span>
+                <span class="marquee__item">Hugging Face</span>
+                <span class="marquee__item">LoRA</span>
+                <span class="marquee__item">RunPod</span>
                 <span class="marquee__item marquee__item--highlight">n8n</span>
                 <span class="marquee__item">Make.com</span>
                 <span class="marquee__item marquee__item--highlight">Retell.ai</span>
